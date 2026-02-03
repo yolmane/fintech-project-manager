@@ -2,7 +2,7 @@
 
 # Структура проекта
 ```
-fintech-project-manager/
+fintech-project-management/
 ├── index.html              # Основной HTML файл
 ├── js/                     # Исходный код JavaScript
 │   ├── Project.js          # Класс управления проектами
@@ -28,4 +28,5 @@ npm install
 
 # Запуск локального сервера
 npm start
+
 
