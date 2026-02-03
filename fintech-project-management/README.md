@@ -1,15 +1,4 @@
 Система управления проектами FinTech-разработки для ООО «ИИП-Интеллектуальные системы»
-# Клонирование репозитория
-git clone https://github.com/yolmane/fintech-project-manager.git
-
-# Переход в директорию проекта
-cd fintech-project-manager
-
-# Установка зависимостей
-npm install
-
-# Запуск локального сервера
-npm start
 
 # Структура проекта
 ```
@@ -27,5 +16,15 @@ fintech-project-manager/
 │   └── project.test.js    # Unit-тесты
 ├── package.json           # Конфигурация npm
 └── README.md             # Документация
-
 ```
+# Клонирование репозитория
+git clone https://github.com/yolmane/fintech-project-manager.git
+
+# Переход в директорию проекта
+cd fintech-project-manager
+
+# Установка зависимостей
+npm install
+
+# Запуск локального сервера
+npm start
