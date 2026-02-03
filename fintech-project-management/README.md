@@ -21,10 +21,11 @@ fintech-project-manager/
 git clone https://github.com/yolmane/fintech-project-manager.git
 
 # Переход в директорию проекта
-cd fintech-project-manager
+cd fintech-project-management
 
 # Установка зависимостей
 npm install
 
 # Запуск локального сервера
 npm start
+
