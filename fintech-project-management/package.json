@@ -1,0 +1,23 @@
+{
+  "name": "fintech-project-manager",
+  "version": "1.0.0",
+  "description": "Система управления проектами FinTech-разработки для ООО «ИИП-Интеллектуальные системы»",
+  "main": "js/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "test": "jest",
+    "build": "echo 'Build complete'"
+  },
+  "keywords": ["fintech", "project-management", "javascript", "banking"],
+  "author": "Разработчик",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "live-server": "^1.2.2"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {}
+  }
+}

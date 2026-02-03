@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление проектами FinTech - ООО «ИИП-Интеллектуальные системы»</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="logo">
+                <h1><i class="fas fa-chart-line"></i> FinTech Project Manager</h1>
+                <p>ООО «ИИП-Интеллектуальные системы»</p>
+            </div>
+            <div class="user-info">
+                <span class="username">Администратор</span>
+                <div class="avatar">А</div>
+            </div>
+        </header>
+
+        <!-- Основная навигация -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="nav-link active" data-view="dashboard"><i class="fas fa-home"></i> Дашборд</a></li>
+                <li><a href="#" class="nav-link" data-view="projects"><i class="fas fa-project-diagram"></i> Проекты</a></li>
+                <li><a href="#" class="nav-link" data-view="team"><i class="fas fa-users"></i> Команда</a></li>
+                <li><a href="#" class="nav-link" data-view="analytics"><i class="fas fa-chart-bar"></i> Аналитика</a></li>
+                <li class="nav-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Проекты:</span>
+                        <span id="totalProjects" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Бюджет:</span>
+                        <span id="totalBudget" class="stat-value">0 ₽</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Сообщения -->
+        <div id="message" class="message"></div>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Дашборд -->
+            <section id="dashboardView" class="view">
+                <div class="dashboard-header">
+                    <h2>Обзор проектов</h2>
+                    <div class="header-actions">
+                        <button id="exportData" class="btn-secondary">
+                            <i class="fas fa-download"></i> Экспорт данных
+                        </button>
+                    </div>
+                </div>
+                <div id="dashboardContent" class="dashboard-content">
+                    <!-- Динамически заполняется JavaScript -->
+                </div>
+            </section>
+
+            <!-- Проекты -->
+            <section id="projectsView" class="view hidden">
+                <div class="section-header">
+                    <h2>Управление проектами</h2>
+                    <div class="controls">
+                        <div class="search-box">
+                            <input type="text" id="projectSearch" placeholder="Поиск проектов...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <button class="btn-primary" onclick="app.showCreateProjectModal()">
+                            <i class="fas fa-plus"></i> Новый проект
+                        </button>
+                    </div>
+                </div>
+                <div id="projectsList" class="projects-list">
+                    <!-- Список проектов -->
+                </div>
+            </section>
+
+            <!-- Команда -->
+            <section id="teamView" class="view hidden">
+                <div class="section-header">
+                    <h2>Управление командой</h2>
+                    <button class="btn-primary" onclick="app.showAddMemberModal()">
+                        <i class="fas fa-user-plus"></i> Добавить участника
+                    </button>
+                </div>
+                <div id="teamList" class="team-list">
+                    <!-- Список команды -->
+                </div>
+            </section>
+
+            <!-- Аналитика -->
+            <section id="analyticsView" class="view hidden">
+                <div class="section-header">
+                    <h2>Аналитика и отчеты</h2>
+                    <div class="time-filter">
+                        <select id="timeRange">
+                            <option value="month">За месяц</option>
+                            <option value="quarter">За квартал</option>
+                            <option value="year">За год</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="analytics-content">
+                    <div class="chart-container">
+                        <canvas id="projectsChart"></canvas>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Распределение по статусам</h3>
+                            <div id="statusDistribution" class="chart-small"></div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Загрузка команды</h3>
+                            <div id="teamWorkload" class="chart-small"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>© 2024 ООО «ИИП-Интеллектуальные системы». Все права защищены.</p>
+            <p class="version">Версия 1.0.0</p>
+        </footer>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="createProjectModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создание нового проекта</h3>
+                <button class="modal-close" onclick="app.closeModal()">&times;</button>
+            </div>
+            <form id="createProjectForm" class="modal-form">
+                <div class="form-group">
+                    <label for="projectName">Название проекта *</label>
+                    <input type="text" id="projectName" name="projectName" required>
+                </div>
+                <div class="form-group">
+                    <label for="client">Клиент *</label>
+                    <input type="text" id="client" name="client" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">Бюджет (₽) *</label>
+                        <input type="number" id="budget" name="budget" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Дата начала *</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Дедлайн *</label>
+                    <input type="date" id="deadline" name="deadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="app.closeModal()">Отмена</button>
+                    <button type="submit" class="btn-primary">Создать проект</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="addMemberModal" class="modal hidden">
+        <!-- Форма добавления участника команды -->
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
